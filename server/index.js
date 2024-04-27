@@ -9,16 +9,16 @@ import cors from "cors"
 dotenv.config()
 mongoose.connect(process.env.URL)
 
-app.use(cors());
 
 mongoose.connect(process.env.URL).then(()=>{
     console.log('DB connected succesfully')
 }).catch((err)=>{
     console.log(err)
 })
-
-
 const app =express()
+app.use(cors());
+
+
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api/user',userRouter)
