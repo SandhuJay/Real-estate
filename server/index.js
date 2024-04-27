@@ -5,10 +5,11 @@ import userRouter from './routes/userRoute.js'
 import authRouter from './routes/authRoute.js'
 import listingRouter from './routes/listingRoute.js';
 import cookieParser from "cookie-parser";
+import cors from "cors"
 dotenv.config()
 mongoose.connect(process.env.URL)
 
-
+app.use(cors());
 
 mongoose.connect(process.env.URL).then(()=>{
     console.log('DB connected succesfully')
