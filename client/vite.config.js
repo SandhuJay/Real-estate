@@ -5,11 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server:{
     proxy:{
-      '/api': {
-        target: 'https://real-estate-1-6mzi.onrender.com',
-        changeOrigin: true,
-        secure: false
-      }
+      '/api':{
+        target:"http://localhost:5000",
+      secure:false}
     }
   },
   plugins: [react()],
