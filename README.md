@@ -18,3 +18,4 @@ This RealEstate project is a web application built using the MERN stack (MongoDB
 - Node.js: JavaScript runtime environment for running server-side code
 - Tailwind CSS: Utility-first CSS framework for styling
 - Vite: Fast, modern build tool for bundling and serving assets
+![Screenshot of RealEstate Application]("C:\Users\sandh\Pictures\Screenshots\Screenshot 2024-04-30 193736.png")
