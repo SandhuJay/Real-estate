@@ -29,6 +29,7 @@ export default function Profile() {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
+
   const dispatch = useDispatch();
 
 
@@ -74,7 +75,7 @@ export default function Profile() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        },
+        },credentials:'include',
         body: JSON.stringify(formData),
       });
       const data = await res.json();
@@ -95,6 +96,7 @@ export default function Profile() {
       dispatch(deleteUserStart());
       const res = await fetch(`${URL.BASEURL}/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
+        credentials:'include',
       });
       const data = await res.json();
       if (data.success === false) {
@@ -125,7 +127,14 @@ export default function Profile() {
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
-      const res = await fetch(`${URL.BASEURL}/api/user/listings/${currentUser._id}`);
+      const res = await fetch(`${URL.BASEURL}/api/user/listings/${currentUser._id}`,{
+        method: 'GET',
+        credentials:'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
       const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);
@@ -142,6 +151,7 @@ export default function Profile() {
     try {
       const res = await fetch(`${URL.BASEURL}/api/listing/delete/${listingId}`, {
         method: 'DELETE',
+        credentials:'include',
       });
       const data = await res.json();
       if (data.success === false) {

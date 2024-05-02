@@ -4,9 +4,14 @@ import { errorHandler } from '../utils/error.js';
 import Listing from '../models/listingModel.js';
 
 export const updateUser = async (req, res, next) => {
-  if (req.user.id !== req.params.id)
-    return next(errorHandler(401, 'You can only update your own account!'));
   try {
+   console.log(req.user.id )
+   console.log(req.params.id )
+    // Ensure user is trying to update their own account
+    if (req.user.id !== req.params.id) {
+      return next(errorHandler(401, 'You can only update your own account!'));
+    }
+
     if (req.body.password) {
       req.body.password = bcryptjs.hashSync(req.body.password, 10);
     }
@@ -24,8 +29,11 @@ export const updateUser = async (req, res, next) => {
       { new: true }
     );
 
-    const { password, ...rest } = updatedUser._doc;
+    if (!updatedUser) {
+      return next(errorHandler(404, 'User not found'));
+    }
 
+    const { password, ...rest } = updatedUser._doc;
     res.status(200).json(rest);
   } catch (error) {
     next(error);
