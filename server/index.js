@@ -20,11 +20,11 @@ mongoose.connect(process.env.URL).then(()=>{
 
    const app =express()
    
-   
+
    app.use(express.urlencoded({ extended: true }));
    app.use(express.json());
    const corsOptions={
-    origin:"https://real-estate-1-nk6a.onrender.com",
+    origin:"http://localhost:5173",
     credentials:true
    }
    app.use(cors(corsOptions));
