@@ -6,7 +6,7 @@ import authRouter from './routes/authRoute.js'
 import listingRouter from './routes/listingRoute.js';
 import cookieParser from "cookie-parser";
 import cors from "cors"
-import helmet from 'helmet'
+
 dotenv.config()
 mongoose.connect(process.env.URL)
 
@@ -20,8 +20,7 @@ mongoose.connect(process.env.URL).then(()=>{
 
    const app =express()
    
-   app.use(helmet());
-   app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+   
    app.use(express.urlencoded({ extended: true }));
    app.use(express.json());
    const corsOptions={
