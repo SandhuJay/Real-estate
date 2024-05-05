@@ -24,7 +24,7 @@ mongoose.connect(process.env.URL).then(()=>{
    app.use(express.urlencoded({ extended: true }));
    app.use(express.json());
    const corsOptions={
-    origin:"http://localhost:5173",
+    origin:"https://real-estate-five-blush.vercel.app/",
     credentials:true
    }
    app.use(cors(corsOptions));
