@@ -78,10 +78,15 @@ export const google = async (req, res, next) => {
       await newUser.save();
       const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '24h' } );
       const { password: pass, ...rest } = newUser._doc;
-      res
-        .cookie('access_token', token, { httpOnly: true })
+        res.cookie("access_token", token, {
+          httpOnly: true,
+          expires: new Date(Date.now() + oneDay),
+          secure: process.env.NODE_ENV === "production",
+          signed: true
+          
+        } )
         .status(200)
-        .json(rest);
+        .json(rest)
     }
   } catch (error) {
     next(error);
